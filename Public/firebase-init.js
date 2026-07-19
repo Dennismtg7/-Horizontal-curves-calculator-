@@ -15,7 +15,7 @@ import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebas
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCXpS8OoLmNFThXtdULRoHn9KnOxW9sa30",
+  apiKey: "",
   authDomain: "my-store-mtg7.firebaseapp.com",
   databaseURL: "https://my-store-mtg7-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "my-store-mtg7",
