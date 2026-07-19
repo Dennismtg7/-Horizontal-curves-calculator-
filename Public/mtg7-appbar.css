@@ -1,0 +1,69 @@
+/* mtg7-appbar.css — shared header used on calculator + dashboard pages.
+   Colors match the calculator's existing palette (--glow: #0066bb, --white: #0f1f35, --border: #c5d5ea). */
+
+.mtg7-appbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid #c5d5ea;
+  font-family: "Times New Roman", Times, serif;
+}
+.mtg7-appbar-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.mtg7-brand {
+  color: #0f1f35;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-decoration: none;
+}
+.mtg7-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 13px;
+}
+.mtg7-nav a {
+  color: #5a7090;
+  text-decoration: none;
+  letter-spacing: 0.5px;
+  padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.mtg7-nav a:hover { color: #0066bb; }
+.mtg7-nav a.active {
+  color: #0066bb;
+  border-bottom-color: #0066bb;
+  font-weight: 700;
+}
+.mtg7-email {
+  color: #5a7090;
+  font-size: 12px;
+  border-left: 1px solid #c5d5ea;
+  padding-left: 14px;
+}
+.mtg7-logout {
+  font-family: "Times New Roman", Times, serif;
+  background: transparent;
+  border: 1px solid #c5d5ea;
+  color: #cc2233;
+  border-radius: 20px;
+  padding: 5px 14px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.mtg7-logout:hover { background: #cc2233; color: #fff; }
+
+@media (max-width: 640px) {
+  .mtg7-appbar-inner { flex-direction: column; align-items: flex-start; }
+  .mtg7-nav { flex-wrap: wrap; gap: 10px; }
+}

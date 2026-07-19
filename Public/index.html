@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MTG7 · Horizontal Curve Setting-Out Calculator</title>
+<style>
+:root {
+  --bg: #f4f7fc;
+  --card: #ffffff;
+  --border: #c5d5ea;
+  --glow: #0066bb;
+  --text: #1b2a41;
+  --muted: #5a7090;
+  --white: #0f1f35;
+  --red: #cc2233;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Times New Roman", Times, serif;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.auth-shell {
+  max-width: 940px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--glow);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(0,102,187,0.08);
+}
+.auth-intro {
+  background: linear-gradient(180deg, rgba(0,102,187,0.06), transparent);
+  padding: 40px 32px;
+  border-right: 1px solid var(--border);
+}
+.header-badge {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: var(--glow);
+  border: 1px solid var(--glow);
+  padding: 4px 16px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+.auth-intro h1 {
+  font-size: clamp(20px, 3vw, 28px);
+  color: var(--white);
+  letter-spacing: 1px;
+  line-height: 1.3;
+  margin-bottom: 14px;
+}
+.auth-intro h1 span { color: var(--glow); }
+.auth-intro p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
+}
+.auth-intro ul { margin: 16px 0 0 18px; color: var(--muted); font-size: 13px; line-height: 1.8; }
+.yt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  color: var(--red);
+  text-decoration: none;
+  font-size: 13px;
+  border: 1px solid var(--border);
+  padding: 8px 14px;
+  border-radius: 20px;
+}
+.yt-link:hover { background: var(--red); color: #fff; }
+
+.auth-form-panel { padding: 40px 32px; display: flex; flex-direction: column; }
+.tabs { display: flex; gap: 8px; margin-bottom: 24px; }
+.tab-btn {
+  flex: 1;
+  font-family: inherit;
+  padding: 10px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+.tab-btn.active { background: var(--glow); color: #fff; border-color: var(--glow); }
+
+label { display: block; font-size: 12px; color: var(--muted); margin: 14px 0 6px; letter-spacing: 0.5px; }
+input {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #fbfdff;
+  color: var(--text);
+}
+input:focus { outline: 2px solid var(--glow); outline-offset: 1px; }
+
+.primary-btn {
+  margin-top: 22px;
+  width: 100%;
+  padding: 12px;
+  background: var(--glow);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.primary-btn:hover { opacity: 0.92; }
+.primary-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.divider { display: flex; align-items: center; gap: 10px; margin: 18px 0; color: var(--muted); font-size: 12px; }
+.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+.google-btn {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.google-btn:hover { border-color: var(--glow); }
+
+#authMsg { min-height: 20px; margin-top: 12px; font-size: 12px; color: var(--red); }
+
+@media (max-width: 720px) {
+  .auth-shell { grid-template-columns: 1fr; }
+  .auth-intro { border-right: none; border-bottom: 1px solid var(--border); }
+}
+</style>
+</head>
+<body>
+
+<div class="auth-shell">
+  <div class="auth-intro">
+    <span class="header-badge">EGE 2309 · Geomatic Engineering · JKUAT</span>
+    <h1>MTG7 <span>Curve Setting-Out</span> Calculator</h1>
+    <p>Sign in to run all six horizontal-curve setting-out methods — tangent points, deflection angles, Rankine's method and EDM — with auto-generated SVG diagrams and tables.</p>
+    <ul>
+      <li>Save every calculation to your personal dashboard</li>
+      <li>Re-open, export or delete past runs anytime</li>
+      <li>Free account — sign up with email or Google</li>
+    </ul>
+    <a class="yt-link" href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank" rel="noopener">▶ Watch tutorials on the MTG7 YouTube channel</a>
+  </div>
+
+  <div class="auth-form-panel">
+    <div class="tabs">
+      <button class="tab-btn active" id="tabLogin">Log In</button>
+      <button class="tab-btn" id="tabSignup">Sign Up</button>
+    </div>
+
+    <form id="authForm">
+      <label for="email">Email</label>
+      <input type="email" id="email" required autocomplete="email" placeholder="you@example.com">
+
+      <label for="password">Password</label>
+      <input type="password" id="password" required autocomplete="current-password" minlength="6" placeholder="At least 6 characters">
+
+      <button type="submit" class="primary-btn" id="submitBtn">Log In</button>
+    </form>
+
+    <div class="divider">or</div>
+    <button class="google-btn" id="googleBtn">Continue with Google</button>
+
+    <div id="authMsg"></div>
+  </div>
+</div>
+
+<script type="module">
+  import { auth, googleProvider } from "./firebase-init.js";
+  import {
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
+    signInWithPopup,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  // If already logged in, skip straight to the calculator.
+  onAuthStateChanged(auth, (user) => {
+    if (user) window.location.href = "calculator.html";
+  });
+
+  let mode = "login"; // or "signup"
+  const tabLogin = document.getElementById("tabLogin");
+  const tabSignup = document.getElementById("tabSignup");
+  const submitBtn = document.getElementById("submitBtn");
+  const authMsg = document.getElementById("authMsg");
+
+  function setMode(next) {
+    mode = next;
+    tabLogin.classList.toggle("active", mode === "login");
+    tabSignup.classList.toggle("active", mode === "signup");
+    submitBtn.textContent = mode === "login" ? "Log In" : "Create Account";
+    authMsg.textContent = "";
+  }
+  tabLogin.addEventListener("click", () => setMode("login"));
+  tabSignup.addEventListener("click", () => setMode("signup"));
+
+  document.getElementById("authForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    submitBtn.disabled = true;
+    authMsg.style.color = "#cc2233";
+    authMsg.textContent = "";
+    try {
+      if (mode === "login") {
+        await signInWithEmailAndPassword(auth, email, password);
+      } else {
+        await createUserWithEmailAndPassword(auth, email, password);
+      }
+      window.location.href = "calculator.html";
+    } catch (err) {
+      authMsg.textContent = friendlyError(err.code) || err.message;
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+
+  document.getElementById("googleBtn").addEventListener("click", async () => {
+    authMsg.textContent = "";
+    try {
+      await signInWithPopup(auth, googleProvider);
+      window.location.href = "calculator.html";
+    } catch (err) {
+      authMsg.textContent = friendlyError(err.code) || err.message;
+    }
+  });
+
+  function friendlyError(code) {
+    const map = {
+      "auth/invalid-email": "That email address doesn't look right.",
+      "auth/user-not-found": "No account found with that email. Try Sign Up.",
+      "auth/wrong-password": "Incorrect password.",
+      "auth/email-already-in-use": "An account already exists for that email. Try Log In.",
+      "auth/weak-password": "Password must be at least 6 characters.",
+      "auth/invalid-credential": "Incorrect email or password."
+    };
+    return map[code];
+  }
+</script>
+</body>
+</html>
