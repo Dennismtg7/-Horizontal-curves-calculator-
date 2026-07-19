@@ -13,14 +13,18 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
+
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCXpS8OoLmNFThXtdULRoHn9KnOxW9sa30",
+  authDomain: "my-store-mtg7.firebaseapp.com",
+  databaseURL: "https://my-store-mtg7-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "my-store-mtg7",
+  storageBucket: "my-store-mtg7.firebasestorage.app",
+  messagingSenderId: "787722917748",
+  appId: "1:787722917748:web:cd1ff8997d549465e1be21",
+  measurementId: "G-16Z2DFBE2P"
 };
+
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
