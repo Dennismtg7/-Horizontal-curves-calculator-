@@ -1,0 +1,16 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // Resources folder — signed-in users can download, no one can upload from client
+    match /resources/{filename} {
+      allow read:  if request.auth != null;
+      allow write: if false; // Upload via Firebase Console or Admin SDK only
+    }
+
+    // User-specific uploads (future: save their results)
+    match /users/{userId}/{allPaths=**} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+  }
+}

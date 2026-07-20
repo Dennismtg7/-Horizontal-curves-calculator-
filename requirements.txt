@@ -1,0 +1,9 @@
+# SurveyPro setup dependencies
+# Install with: pip install -r requirements.txt
+
+# Firebase Admin SDK — for server-side operations (optional)
+# Used if you want to run backend tasks, manage users, upload files via script
+firebase-admin>=6.2.0
+
+# For setup.py — no extra dependencies needed beyond stdlib
+# (subprocess, json, webbrowser are built-in)

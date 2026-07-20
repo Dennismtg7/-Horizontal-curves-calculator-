@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SurveyPro — Engineering & Surveying Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="public/css/main.css"/>
+</head>
+<body>
+
+<!-- ── NAVBAR ──────────────────────────────────────────── -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-logo">⟁ SurveyPro</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#tools" class="nav-link">Tools</a>
+    <a href="#videos" class="nav-link">Tutorials</a>
+    <a href="#resources" class="nav-link">Resources</a>
+    <a href="#about" class="nav-link">About</a>
+  </div>
+  <div class="nav-auth" id="navAuth">
+    <button class="btn btn-ghost" onclick="showModal('login')">Sign In</button>
+    <button class="btn btn-primary" onclick="showModal('register')">Get Started</button>
+  </div>
+  <div class="nav-user hidden" id="navUser">
+    <span class="user-avatar" id="userAvatar">D</span>
+    <span class="user-name" id="userName">Denns</span>
+    <button class="btn btn-ghost btn-sm" onclick="openDashboard()">Dashboard</button>
+    <button class="btn btn-ghost btn-sm" onclick="signOut()">Sign Out</button>
+  </div>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()">☰</button>
+</nav>
+
+<!-- ── HERO ───────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Land Surveying · Road Engineering · Geomatics</div>
+    <h1 class="hero-title">
+      Precision Tools for<br/>
+      <span class="hero-accent">Field Engineers</span>
+    </h1>
+    <p class="hero-sub">
+      Professional-grade surveying calculators, video tutorials, and downloadable
+      resources — built by a surveying student, for surveying professionals.
+    </p>
+    <div class="hero-cta">
+      <button class="btn btn-primary btn-lg" onclick="showModal('register')">Start for Free</button>
+      <a href="#tools" class="btn btn-outline btn-lg">Explore Tools</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n" data-target="6">0</span><span class="stat-l">Calculators</span></div>
+      <div class="stat"><span class="stat-n" data-target="100">0</span><span class="stat-l">Users</span></div>
+      <div class="stat"><span class="stat-n" data-target="12">0</span><span class="stat-l">Resources</span></div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="instrument-card">
+      <div class="ic-header"><span class="ic-dot r"></span><span class="ic-dot y"></span><span class="ic-dot g"></span></div>
+      <div class="ic-body">
+        <div class="ic-label">DEFLECTION ANGLE θ</div>
+        <div class="ic-value">70° 00' 00"</div>
+        <div class="ic-label" style="margin-top:10px">RADIUS R</div>
+        <div class="ic-value">210.00 m</div>
+        <div class="ic-divider"></div>
+        <div class="ic-row"><span class="ic-key">T =</span><span class="ic-val">147.044 m</span></div>
+        <div class="ic-row"><span class="ic-key">L =</span><span class="ic-val">256.563 m</span></div>
+        <div class="ic-row"><span class="ic-key">C =</span><span class="ic-val">240.208 m</span></div>
+        <div class="ic-row"><span class="ic-key">M =</span><span class="ic-val">24.534 m</span></div>
+        <div class="ic-row"><span class="ic-key">E =</span><span class="ic-val">27.394 m</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TOOLS ──────────────────────────────────────────── -->
+<section class="section" id="tools">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eye">CALCULATORS</div>
+      <h2 class="section-title">Professional Surveying Tools</h2>
+      <p class="section-sub">Sign up free to access all calculators with full export and diagram support.</p>
+    </div>
+    <div class="tools-grid">
+      <div class="tool-card" onclick="requireAuth('curve')">
+        <div class="tool-icon">⌒</div>
+        <h3 class="tool-name">Horizontal Curve</h3>
+        <p class="tool-desc">Six setting-out methods with SVG diagrams: offsets, theodolite, Rankine's, EDM, coordinates.</p>
+        <div class="tool-tags"><span class="tag">6 Methods</span><span class="tag">SVG Diagrams</span><span class="tag">CSV Export</span></div>
+        <div class="tool-footer">Open Calculator →</div>
+      </div>
+      <div class="tool-card" onclick="requireAuth('traverse')">
+        <div class="tool-icon">⬡</div>
+        <h3 class="tool-name">Traverse Computation</h3>
+        <p class="tool-desc">Bowditch & transit rule adjustments, area computation, coordinate output and error of closure.</p>
+        <div class="tool-tags"><span class="tag">Bowditch</span><span class="tag">Transit</span><span class="tag">Area</span></div>
+        <div class="tool-footer">Open Calculator →</div>
+      </div>
+      <div class="tool-card" onclick="requireAuth('setting-out')">
+        <div class="tool-icon">⊞</div>
+        <h3 class="tool-name">Setting Out Data</h3>
+        <p class="tool-desc">Generate full peg setting-out tables for any method, with DMS angle input and chainage of I.</p>
+        <div class="tool-tags"><span class="tag">DMS Input</span><span class="tag">Tables</span><span class="tag">Print</span></div>
+        <div class="tool-footer">Open Calculator →</div>
+      </div>
+      <div class="tool-card coming-soon">
+        <div class="tool-icon">▲</div>
+        <h3 class="tool-name">Levelling &amp; Contouring</h3>
+        <p class="tool-desc">Rise &amp; fall, height of collimation, reduced levels and booking sheets.</p>
+        <div class="tool-tags"><span class="tag">Rise &amp; Fall</span><span class="tag">HPC</span></div>
+        <div class="tool-footer coming">Coming Soon</div>
+      </div>
+      <div class="tool-card coming-soon">
+        <div class="tool-icon">⊙</div>
+        <h3 class="tool-name">Area &amp; Volume</h3>
+        <p class="tool-desc">Prismoidal, end-area, planimeter simulation and cut/fill quantities.</p>
+        <div class="tool-tags"><span class="tag">Prismoidal</span><span class="tag">Cut/Fill</span></div>
+        <div class="tool-footer coming">Coming Soon</div>
+      </div>
+      <div class="tool-card coming-soon">
+        <div class="tool-icon">⊕</div>
+        <h3 class="tool-name">Coordinate Geometry</h3>
+        <p class="tool-desc">Bearing and distance computation, intersection, resection, transformation.</p>
+        <div class="tool-tags"><span class="tag">COGO</span><span class="tag">Resection</span></div>
+        <div class="tool-footer coming">Coming Soon</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── YOUTUBE ─────────────────────────────────────────── -->
+<section class="section section-dark" id="videos">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eye">TUTORIALS</div>
+      <h2 class="section-title">Learn from the Channel</h2>
+      <p class="section-sub">Step-by-step surveying engineering tutorials on YouTube.</p>
+      <a href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank" class="btn btn-youtube">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 00.5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 002.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 002.1-2.1C24 15.9 24 12 24 12s0-3.9-.5-5.8zM9.7 15.5V8.5l6.3 3.5-6.3 3.5z"/></svg>
+        Subscribe on YouTube
+      </a>
+    </div>
+    <div class="videos-grid" id="videosGrid">
+      <!-- Filled by JS with YouTube embed cards -->
+      <div class="video-card">
+        <div class="video-thumb" onclick="openVideo('https://www.youtube.com/@DnsMTG7-uc7nf')">
+          <div class="video-play">▶</div>
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#1a1a2e,#16213e)"></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Horizontal Curve Setting Out — Full Tutorial</div>
+          <div class="video-meta">DnsMTG7 · Surveying Engineering</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb" onclick="openVideo('https://www.youtube.com/@DnsMTG7-uc7nf')">
+          <div class="video-play">▶</div>
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#0f3460,#533483)"></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Traverse Computation with Bowditch Rule</div>
+          <div class="video-meta">DnsMTG7 · Surveying Engineering</div>
+        </div>
+      </div>
+      <div class="video-card">
+        <div class="video-thumb" onclick="openVideo('https://www.youtube.com/@DnsMTG7-uc7nf')">
+          <div class="video-play">▶</div>
+          <div class="video-thumb-bg" style="background:linear-gradient(135deg,#1b4332,#40916c)"></div>
+        </div>
+        <div class="video-info">
+          <div class="video-title">Setting Out Data — Methods Explained</div>
+          <div class="video-meta">DnsMTG7 · Surveying Engineering</div>
+        </div>
+      </div>
+    </div>
+    <div class="videos-cta">
+      <a href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank" class="btn btn-outline-light">View All Videos on YouTube →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── RESOURCES ───────────────────────────────────────── -->
+<section class="section" id="resources">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eye">DOWNLOADS</div>
+      <h2 class="section-title">Resources &amp; References</h2>
+      <p class="section-sub">Sign up to download field sheets, formula sheets, and example datasets.</p>
+    </div>
+    <div class="resources-grid" id="resourcesGrid">
+      <div class="resource-card" onclick="requireAuth('download','horizontal-curve-formulas.pdf')">
+        <div class="resource-icon">📐</div>
+        <div class="resource-info">
+          <div class="resource-name">Horizontal Curve Formula Sheet</div>
+          <div class="resource-meta">PDF · 2 pages</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+      <div class="resource-card" onclick="requireAuth('download','traverse-booking-sheet.xlsx')">
+        <div class="resource-icon">📊</div>
+        <div class="resource-info">
+          <div class="resource-name">Traverse Booking Sheet</div>
+          <div class="resource-meta">XLSX · Template</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+      <div class="resource-card" onclick="requireAuth('download','setting-out-table-template.pdf')">
+        <div class="resource-icon">📋</div>
+        <div class="resource-info">
+          <div class="resource-name">Setting Out Table Template</div>
+          <div class="resource-meta">PDF · Field sheet</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+      <div class="resource-card" onclick="requireAuth('download','dms-conversion-guide.pdf')">
+        <div class="resource-icon">🧮</div>
+        <div class="resource-info">
+          <div class="resource-name">DMS Conversion Quick Guide</div>
+          <div class="resource-meta">PDF · Reference card</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+      <div class="resource-card" onclick="requireAuth('download','curve-example-dataset.csv')">
+        <div class="resource-icon">📁</div>
+        <div class="resource-info">
+          <div class="resource-name">Curve Example Dataset</div>
+          <div class="resource-meta">CSV · Sample data</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+      <div class="resource-card" onclick="requireAuth('download','surveying-abbreviations.pdf')">
+        <div class="resource-icon">📖</div>
+        <div class="resource-info">
+          <div class="resource-name">Surveying Abbreviations Glossary</div>
+          <div class="resource-meta">PDF · Reference</div>
+        </div>
+        <div class="resource-dl">↓</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ───────────────────────────────────────────── -->
+<section class="section section-accent" id="about">
+  <div class="container about-inner">
+    <div class="about-text">
+      <div class="section-eye">ABOUT</div>
+      <h2 class="section-title">Built by a Surveying Student</h2>
+      <p>SurveyPro was built by a land surveying &amp; road engineering student at JKUAT — out of genuine frustration with how hard it is to find clean, reliable tools for setting-out work in the field.</p>
+      <p>Every calculator here has been tested against real coursework problems. The tools are free to use, the formulas are transparent, and everything exports to formats you can actually use in the field or in a report.</p>
+      <a href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank" class="btn btn-primary">Watch the Tutorials →</a>
+    </div>
+    <div class="about-channel">
+      <div class="channel-card">
+        <div class="channel-logo">▶</div>
+        <div class="channel-name">@DnsMTG7-uc7nf</div>
+        <div class="channel-desc">Surveying &amp; Engineering tutorials<br/>in plain language.</div>
+        <a href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank" class="btn btn-youtube" style="margin-top:16px">Subscribe</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ──────────────────────────────────────────── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">⟁ SurveyPro</div>
+      <div class="footer-tagline">Engineering Precision. Field Ready.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#tools">Tools</a>
+      <a href="#videos">Tutorials</a>
+      <a href="#resources">Resources</a>
+      <a href="https://www.youtube.com/@DnsMTG7-uc7nf" target="_blank">YouTube</a>
+    </div>
+    <div class="footer-copy">© 2025 SurveyPro. Built with precision.</div>
+  </div>
+</footer>
+
+<!-- ── DASHBOARD OVERLAY ───────────────────────────────── -->
+<div class="overlay hidden" id="dashboardOverlay" onclick="closeDashboard(event)">
+  <div class="dashboard" id="dashboardPanel">
+    <div class="dash-header">
+      <h2 class="dash-title">Dashboard</h2>
+      <button class="dash-close" onclick="closeDashboard()">✕</button>
+    </div>
+    <div class="dash-body">
+      <div class="dash-welcome" id="dashWelcome">Welcome back, <strong id="dashName">Denns</strong></div>
+      <div class="dash-grid">
+        <div class="dash-card" onclick="openTool('curve')">
+          <div class="dc-icon">⌒</div>
+          <div class="dc-title">Horizontal Curve</div>
+          <div class="dc-sub">6 Setting-out methods</div>
+        </div>
+        <div class="dash-card" onclick="openTool('traverse')">
+          <div class="dc-icon">⬡</div>
+          <div class="dc-title">Traverse</div>
+          <div class="dc-sub">Bowditch & Transit</div>
+        </div>
+        <div class="dash-card" onclick="openTool('setting-out')">
+          <div class="dc-icon">⊞</div>
+          <div class="dc-title">Setting Out</div>
+          <div class="dc-sub">Full peg tables</div>
+        </div>
+        <div class="dash-card" onclick="goToYouTube()">
+          <div class="dc-icon" style="color:#ff0000">▶</div>
+          <div class="dc-title">Tutorials</div>
+          <div class="dc-sub">YouTube channel</div>
+        </div>
+      </div>
+
+      <div class="dash-section">Recent Activity</div>
+      <div class="dash-activity" id="dashActivity">
+        <div class="activity-item">
+          <span class="ai-icon">⌒</span>
+          <span class="ai-text">Opened Horizontal Curve Calculator</span>
+          <span class="ai-time">Just now</span>
+        </div>
+      </div>
+
+      <div class="dash-section">Downloads</div>
+      <div class="dash-downloads">
+        <div class="dl-item" onclick="downloadResource('horizontal-curve-formulas.pdf')">
+          <span>📐 Horizontal Curve Formula Sheet</span><span class="dl-btn">↓</span>
+        </div>
+        <div class="dl-item" onclick="downloadResource('traverse-booking-sheet.xlsx')">
+          <span>📊 Traverse Booking Sheet</span><span class="dl-btn">↓</span>
+        </div>
+        <div class="dl-item" onclick="downloadResource('setting-out-table-template.pdf')">
+          <span>📋 Setting Out Table Template</span><span class="dl-btn">↓</span>
+        </div>
+        <div class="dl-item" onclick="downloadResource('dms-conversion-guide.pdf')">
+          <span>🧮 DMS Conversion Quick Guide</span><span class="dl-btn">↓</span>
+        </div>
+        <div class="dl-item" onclick="downloadResource('curve-example-dataset.csv')">
+          <span>📁 Curve Example Dataset</span><span class="dl-btn">↓</span>
+        </div>
+      </div>
+
+      <div class="dash-section">Account</div>
+      <div class="dash-account">
+        <div class="acct-row"><span class="acct-label">Email</span><span class="acct-val" id="dashEmail">—</span></div>
+        <div class="acct-row"><span class="acct-label">Member since</span><span class="acct-val" id="dashJoined">—</span></div>
+        <div class="acct-row"><span class="acct-label">Tools used</span><span class="acct-val" id="dashToolsUsed">0</span></div>
+      </div>
+      <button class="btn btn-ghost" style="margin-top:12px;width:100%" onclick="signOut()">Sign Out</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── AUTH MODALS ─────────────────────────────────────── -->
+<div class="modal-backdrop hidden" id="authBackdrop" onclick="closeModal(event)">
+  <!-- LOGIN -->
+  <div class="modal hidden" id="loginModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">⟁</div>
+    <h2 class="modal-title">Sign In</h2>
+    <p class="modal-sub">Access all tools and resources.</p>
+    <div id="loginError" class="form-error hidden"></div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com" class="form-input" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••" class="form-input" onkeydown="if(event.key==='Enter')doLogin()"/>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="doLogin()" id="loginBtn">Sign In</button>
+    <div class="modal-divider"><span>or</span></div>
+    <button class="btn btn-google btn-full" onclick="doGoogleLogin()">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <div class="modal-switch">Don't have an account? <a href="#" onclick="showModal('register')">Sign up free</a></div>
+    <div class="modal-switch"><a href="#" onclick="showModal('reset')">Forgot password?</a></div>
+  </div>
+
+  <!-- REGISTER -->
+  <div class="modal hidden" id="registerModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">⟁</div>
+    <h2 class="modal-title">Create Account</h2>
+    <p class="modal-sub">Free access to all surveying tools.</p>
+    <div id="registerError" class="form-error hidden"></div>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="regName" placeholder="Your name" class="form-input" onkeydown="if(event.key==='Enter')doRegister()"/>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="regEmail" placeholder="you@example.com" class="form-input" onkeydown="if(event.key==='Enter')doRegister()"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="regPassword" placeholder="Min. 6 characters" class="form-input" onkeydown="if(event.key==='Enter')doRegister()"/>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="doRegister()" id="registerBtn">Create Account</button>
+    <div class="modal-divider"><span>or</span></div>
+    <button class="btn btn-google btn-full" onclick="doGoogleLogin()">
+      <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continue with Google
+    </button>
+    <div class="modal-switch">Already have an account? <a href="#" onclick="showModal('login')">Sign in</a></div>
+  </div>
+
+  <!-- RESET PASSWORD -->
+  <div class="modal hidden" id="resetModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-logo">⟁</div>
+    <h2 class="modal-title">Reset Password</h2>
+    <p class="modal-sub">We'll send a reset link to your email.</p>
+    <div id="resetMsg" class="form-success hidden"></div>
+    <div id="resetError" class="form-error hidden"></div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="resetEmail" placeholder="you@example.com" class="form-input"/>
+    </div>
+    <button class="btn btn-primary btn-full" onclick="doReset()">Send Reset Link</button>
+    <div class="modal-switch"><a href="#" onclick="showModal('login')">← Back to Sign In</a></div>
+  </div>
+</div>
+
+<!-- ── TOAST ───────────────────────────────────────────── -->
+<div class="toast hidden" id="toast"></div>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,
+           signInWithPopup, GoogleAuthProvider, signOut as fbSignOut,
+           onAuthStateChanged, sendPasswordResetEmail, updateProfile
+         } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+  import { getFirestore, doc, setDoc, getDoc, updateDoc, increment, serverTimestamp
+         } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js";
+
+  // ── FIREBASE CONFIG ─────────────────────────────────────
+  // 🔧 REPLACE these values with your own from Firebase Console
+  // firebase.google.com → Project Settings → General → Your apps → Firebase SDK snippet
+  const firebaseConfig = {
+    apiKey:            "YOUR_API_KEY",
+    authDomain:        "YOUR_PROJECT.firebaseapp.com",
+    projectId:         "YOUR_PROJECT_ID",
+    storageBucket:     "YOUR_PROJECT.appspot.com",
+    messagingSenderId: "YOUR_SENDER_ID",
+    appId:             "YOUR_APP_ID"
+  };
+
+  const app  = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db   = getFirestore(app);
+  const storage = getStorage(app);
+  const googleProvider = new GoogleAuthProvider();
+
+  // Expose to global scope for onclick handlers
+  window._auth    = auth;
+  window._db      = db;
+  window._storage = storage;
+  window._googleProvider = googleProvider;
+  window._fbModules = {
+    createUserWithEmailAndPassword, signInWithEmailAndPassword,
+    signInWithPopup, fbSignOut, sendPasswordResetEmail, updateProfile,
+    onAuthStateChanged, doc, setDoc, getDoc, updateDoc, increment,
+    serverTimestamp, ref, getDownloadURL
+  };
+
+  // ── AUTH STATE LISTENER ─────────────────────────────────
+  onAuthStateChanged(auth, async (user) => {
+    if (user) {
+      document.getElementById('navAuth').classList.add('hidden');
+      document.getElementById('navUser').classList.remove('hidden');
+      document.getElementById('userName').textContent = user.displayName || user.email.split('@')[0];
+      document.getElementById('userAvatar').textContent = (user.displayName || user.email)[0].toUpperCase();
+      document.getElementById('dashName').textContent   = user.displayName || user.email.split('@')[0];
+      document.getElementById('dashEmail').textContent  = user.email;
+
+      // Load Firestore profile
+      const uref = doc(db, 'users', user.uid);
+      const snap = await getDoc(uref);
+      if (snap.exists()) {
+        const d = snap.data();
+        document.getElementById('dashJoined').textContent = d.createdAt?.toDate?.().toLocaleDateString() || '—';
+        document.getElementById('dashToolsUsed').textContent = d.toolsUsed || 0;
+      } else {
+        // First login — create profile
+        await setDoc(uref, {
+          displayName: user.displayName || '',
+          email: user.email,
+          createdAt: serverTimestamp(),
+          toolsUsed: 0,
+          downloads: 0
+        });
+      }
+    } else {
+      document.getElementById('navAuth').classList.remove('hidden');
+      document.getElementById('navUser').classList.add('hidden');
+    }
+  });
+</script>
+<script src="public/js/app.js"></script>
+</body>
+</html>

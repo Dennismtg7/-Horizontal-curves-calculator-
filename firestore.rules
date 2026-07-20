@@ -1,0 +1,22 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can only read and write their own profile
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Resources metadata — anyone signed in can read, only admins write
+    match /resources/{resourceId} {
+      allow read: if request.auth != null;
+      allow write: if false; // Managed via Firebase Console or Admin SDK
+    }
+
+    // Analytics events — users can create, not read others'
+    match /analytics/{docId} {
+      allow create: if request.auth != null;
+      allow read, update, delete: if false;
+    }
+  }
+}
